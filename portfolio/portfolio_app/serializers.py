@@ -1,5 +1,14 @@
 from rest_framework import serializers
-from .models import Projects, WorkExperience, Education, Review, Skills, Picture
+from .models import (
+    Projects,
+    WorkExperience,
+    Education,
+    Review,
+    Skills,
+    Picture,
+    Articles,
+    Contact,
+)
 
 
 class PictureSerializer(serializers.ModelSerializer):
@@ -53,3 +62,17 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = "__all__"
+
+
+class ArticleSerializer(serializers.ModelSerializer):
+    image = PictureSerializer(many=True)
+
+    class Meta:
+        model = Articles
+        fields = "__all__"
+
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = ["name", "email", "subject", "id", "message"]

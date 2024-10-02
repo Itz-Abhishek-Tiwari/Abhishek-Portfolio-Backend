@@ -58,3 +58,24 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review by {self.professor}"
+
+
+class Articles(models.Model):
+    title = models.CharField(max_length=100)
+    body = models.TextField()
+    image = models.ManyToManyField(Picture)
+    link = models.URLField(null=True, blank=True)
+    created_at = models.DateTimeField()
+
+    def __str__(self):
+        return self.title
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    subject = models.CharField(max_length=100)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.name
